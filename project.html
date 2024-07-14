@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot Landing Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            text-align: center;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 600px;
+        }
+        h1 {
+            margin-bottom: 20px;
+            font-size: 2.5em;
+            color: #333;
+        }
+        #chatbox {
+            width: 100%;
+            height: 300px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 20px;
+            overflow-y: scroll;
+            background-color: #f9f9f9;
+        }
+        .user-message, .bot-message {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .user-message {
+            background-color: #007BFF;
+            color: white;
+            text-align: right;
+        }
+        .bot-message {
+            background-color: #eee;
+            text-align: left;
+        }
+        input[type="text"] {
+            width: calc(100% - 110px);
+            padding: 10px;
+            margin-right: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to Our Chatbot</h1>
+        <div id="chatbox"></div>
+        <input type="text" id="userInput" placeholder="Type a message..." />
+        <button onclick="sendMessage()">Send</button>
+    </div>
+
+    <script>
+        function sendMessage() {
+            var userInput = document.getElementById("userInput").value;
+            if (userInput.trim() === "") {
+                return;
+            }
+            var chatbox = document.getElementById("chatbox");
+
+            var userMessage = document.createElement("div");
+            userMessage.className = "user-message";
+            userMessage.textContent = userInput;
+            chatbox.appendChild(userMessage);
+
+            document.getElementById("userInput").value = "";
+
+            var botMessage = document.createElement("div");
+            botMessage.className = "bot-message";
+            botMessage.textContent = getBotResponse(userInput);
+            chatbox.appendChild(botMessage);
+
+            chatbox.scrollTop = chatbox.scrollHeight;
+        }
+
+        function getBotResponse(input) {
+            // Expanded bot responses for demonstration
+            var responses = {
+                "hi": "Hello! How can I help you today?",
+                "hello": "Hi there! What can I do for you?",
+                "how are you": "I'm just a bot, but I'm doing great! How about you?",
+                "bye": "Goodbye! Have a great day!",
+                "what's your name": "I'm a chatbot created to assist you. What's your name?",
+                "what can you do": "I can chat with you about various topics, answer questions, and provide information. How can I assist you today?",
+                "tell me a joke": "Why don't scientists trust atoms? Because they make up everything!",
+                "what's the weather like": "I'm not connected to the internet, so I can't check the weather. But you can try asking your weather app!",
+                "who is your creator": "I was created by a team of developers to help answer your questions.",
+                "tell me a story": "Once upon a time, in a land far away, there was a small chatbot who loved to help people...",
+                "default": "I'm not sure how to respond to that. Can you ask something else?"
+            };
+
+            var response = responses[input.toLowerCase()] || responses["default"];
+            return response;
+        }
+    </script>
+</body>
+</html>

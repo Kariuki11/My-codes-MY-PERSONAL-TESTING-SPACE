@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f3f4f6;
+            margin: 0;
+            padding: 0;
+        }
+        .email-wrapper {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .header {
+            background-color: #bfdbfe;
+            padding: 20px;
+            text-align: center;
+        }
+        .header img {
+            max-width: 150px;
+        }
+        .content {
+            padding: 20px;
+            color: #1f2937;
+        }
+        .subject {
+            font-size: 24px;
+            font-weight: 700;
+            color: #2563eb;
+            margin: 0 0 20px 0;
+        }
+        .course-list {
+            list-style: none;
+            padding: 0;
+        }
+        .course-list li {
+            background-color: #f1f5f9;
+            border: 1px solid #e5e7eb;
+            border-radius: 4px;
+            margin: 10px 0;
+            padding: 15px;
+            font-size: 18px;
+            color: #1f2937;
+        }
+        .cta {
+            display: block;
+            width: fit-content;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: #2563eb;
+            color: #ffffff;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 700;
+        }
+        .footer {
+            background-color: #f1f5f9;
+            padding: 20px;
+            text-align: center;
+            color: #6b7280;
+        }
+        .footer a {
+            color: #2563eb;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="email-wrapper">
+        <div class="header">
+            <img src="{{site.logo_with_name}}" alt="{{site.name}} Logo">
+        </div>
+        <div class="content">
+            <h1 class="subject">New Courses Available!</h1>
+            <p>Hi {{user}},</p>
+            <p>We are excited to announce the following new courses:</p>
+            <ul class="course-list">
+                {% for course in courses %}
+                <li>{{course}}</li>
+                {% endfor %}
+            </ul>
+            <p>Don't miss out on these great learning opportunities! Click the button below to explore all our courses and start learning today.</p>
+            <a href="{{site.domain}}/studypro/courses" class="cta">Explore Courses</a>
+        </div>
+        <div class="footer">
+            <p>&copy; 2024 {{site.name}}. All rights reserved.</p>
+            <p><a href="{% url 'privacy-policies' %}">Privacy Policy</a> | <a href="{% url 'terms' %}">Terms of Service</a></p>
+        </div>
+    </div>
+</body>
+</html>
